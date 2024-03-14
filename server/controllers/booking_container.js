@@ -79,8 +79,47 @@ router.post('/register',async(req,res)=>{
 // }
 
    // filtering the conatiners
+// router.post('/available', async (req, res) => {
+//     const { start_time, end_time, con_type } = req.body;
+
+//     try {
+//         // Build the filter object based on provided parameters
+//         const filter = {};
+
+//         // Add type filter if type is provided
+//         if (con_type) {
+//             con_type= con_type;
+//         }
+
+//         // Find containers based on filter
+//         const containers = await ContModal.find(con_type);
+
+//         // Initialize an object to store containers with availability status
+//         const containersWithAvailability = {};
+
+//         // Loop through each container
+//         for (const container of containers) {
+//             // If start_time and end_time are provided, check availability
+//             let isAvailable = true;
+//             if (start_time && end_time) {
+//                 // Check if the container is available for the specified time slot
+//                 isAvailable = await isContainerAvailable(container._id, start_time, end_time);
+//             }
+
+//             // Add container with availability status to the object
+//             containersWithAvailability[container._id] = isAvailable;
+//         }
+
+//         return res.status(200).json({ message: "Containers availability for the given parameters.", containersWithAvailability });
+//     } catch (err) {
+//         console.error("Error fetching containers availability:", err);
+//         return res.status(500).json({ message: "Internal server error." });
+//     }
+// });
+
 router.post('/available', async (req, res) => {
-    const { start_time, end_time, con_type } = req.body;
+    const { start_time, end_time, con_type, con_dimension } = req.body;
+    console.log(start_time)
 
     try {
         // Build the filter object based on provided parameters
@@ -88,11 +127,16 @@ router.post('/available', async (req, res) => {
 
         // Add type filter if type is provided
         if (con_type) {
-            con_type= con_type;
+            filter.con_type = con_type;
+        }
+
+        // Add dimension filter if dimension is provided
+        if (con_dimension) {
+            filter.con_dimension = con_dimension;
         }
 
         // Find containers based on filter
-        const containers = await ContModal.find(con_type);
+        const containers = await ContModal.find(filter);
 
         // Initialize an object to store containers with availability status
         const containersWithAvailability = {};
@@ -116,6 +160,7 @@ router.post('/available', async (req, res) => {
         return res.status(500).json({ message: "Internal server error." });
     }
 });
+
 
 // Function to check container availability for a given time slot
 async function isContainerAvailable(containerId, startTime, endTime) {

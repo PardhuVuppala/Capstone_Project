@@ -35,11 +35,11 @@ export default function Header() {
     setUsername(username);
     setRole(role);
     setOwnerName(ownername);
-    console.log("Token:", token);
-    console.log("User ID:", userId);
-    console.log("Role:", role);
-    console.log("owner_name : " ,ownername);
-    console.log("owner_id : ",owner_id)
+    // console.log("Token:", token);
+    // console.log("User ID:", userId);
+    // console.log("Role:", role);
+    // console.log("owner_name : " ,ownername);
+    // console.log("owner_id : ",owner_id)
   },[]);
   return (
     <div>

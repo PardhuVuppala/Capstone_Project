@@ -62,6 +62,7 @@ export default function Login() {
         e.preventDefault();
         const owneremail = useremail
         const ownerpass = userpass
+
         const body = { 
           owneremail,
           ownerpass
@@ -83,6 +84,7 @@ export default function Login() {
           .catch(error =>{
             if(error.response && error.response.status===401)
             {
+              notify(error.response.data.message);
               console.log(error.response.data.message);    
             }
             else
@@ -113,11 +115,11 @@ export default function Login() {
               <form onSubmit={handleSubmit}>
                   <div className="form-group">
                     <label for="email" className="sr-only">Email</label>
-                    <input type="email" name="email" id="email" className="form-control"value={useremail} onChange={(e)=>setEmail(e.target.value)} placeholder="Email address"/>
+                    <input type="email" name="email" id="email" className="form-control"value={useremail} onChange={(e)=>setEmail(e.target.value)} placeholder="Email address" required/>
                   </div>
                   <div className="form-group mb-4">
                     <label for="password" className="sr-only">Password</label>
-                    <input type="password" name="password" id="password" className="form-control" value={userpass} onChange={(e)=>setPassword(e.target.value)} placeholder="***********"/>
+                    <input type="password" name="password" id="password" className="form-control" value={userpass} onChange={(e)=>setPassword(e.target.value)} placeholder="***********" required/>
                   </div>
                   <div className="form-group mb-4">
                   <span>Choose Mode Of Login</span>
