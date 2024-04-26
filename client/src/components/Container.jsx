@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import Header from './Header'
+import Navbar from "./Navbar";
 import Cookies from 'js-cookie';
 import axios from 'axios';
 import { ToastContainer, toast} from 'react-toastify';
@@ -63,7 +63,7 @@ export default function Container() {
   return (
     <div>
           <ToastContainer />
-      <Header/>
+      <Navbar/>
       All the Containers Owned
       <div className="d-flex justify-content-end">
        <button type="button" className="btn btn-primary mr-2" data-toggle="modal" data-target="#exampleModalCenter">

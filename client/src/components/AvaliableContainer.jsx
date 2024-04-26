@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Header from './Header';
+// import Header from './Header';
+import Navbar from "./Navbar";
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { ToastContainer, toast } from 'react-toastify';
@@ -140,7 +141,7 @@ export default function AvailableContainer() {
       <div>
         <ToastContainer />
       </div>
-      <Header />
+      <Navbar/>
       <h1>Container List</h1>
       <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
         Filter

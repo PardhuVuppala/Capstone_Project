@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "title": "Introduction to React",
+        "description": "Learn the basics of React and how to create web applications using this popular front-end library.",
+        "duration": "2 hours",
+        "level": "Beginner",
+        "image": "https://i.morioh.com/2019/10/23/620a990fe531.jpg",
+        "video": "https://example.com/react-intro.mp4"
+    },
+    {
+        "id": 2,
+        "title": "Advanced React Techniques",
+        "description": "Take your React skills to the next level with advanced techniques like Redux, server-side rendering, and more.",
+        "duration": "3 hours",
+        "level": "Intermediate",
+        "image": "https://www.classcentral.com/report/wp-content/uploads/2022/10/React-JS-BCG-Banner.png",
+        "video": "https://example.com/react-advanced.mp4"
+    },
+    {
+        "id": 3,
+        "title": "React Native for Mobile Development",
+        "description": "Learn how to create mobile apps with React Native, the popular cross-platform framework for building native apps for iOS and Android.",
+        "duration": "4 hours",
+        "level": "Advanced",
+        "image": "https://i.ytimg.com/vi/_ivIUCSOZ78/maxresdefault.jpg",
+        "video": "https://example.com/react-native.mp4"
+    },
+    {
+        "id": 4,
+        "title": "Building Web Applications with Node.js",
+        "description": "Learn how to create web applications with Node.js, the popular server-side JavaScript platform.",
+        "duration": "5 hours",
+        "level": "Intermediate",
+        "image": "https://www.thincor.in/wp-content/uploads/2018/01/nodejs-1.jpg",
+        "video": "https://example.com/nodejs.mp4"
+    }
+]

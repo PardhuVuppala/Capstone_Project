@@ -1,5 +1,5 @@
 import React,{useEffect,useState} from 'react'
-import Header from './Header'
+import Navbar from "./Navbar";
 import axios from 'axios'
 import Cookies from 'js-cookie';
 export default function Booking() {
@@ -22,7 +22,7 @@ export default function Booking() {
   },[])
   return (
     <div>
-        <Header/>
+        <Navbar/>
         <div className='mt-5'>
       <div className="row no-gutters d-flex justify-content-center">
   {containers.map(container => (

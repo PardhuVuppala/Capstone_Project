@@ -39,7 +39,7 @@ export default function Login() {
          notify("Successfully Login");
          setTimeout(()=>
          {
-         Navigate("/dashboard");
+         Navigate("/Home");
          },1000)
   
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
+// import Header from './Header';
 import axios from 'axios';
+import Navbar from "./Navbar";
 import Cookies from 'js-cookie';
 
 export default function BookedContainers() {
@@ -26,7 +27,7 @@ export default function BookedContainers() {
 
     return (
         <div>
-            <Header />
+            <Navbar/>
             <h1>Booked Containers</h1>
             <div className="container ">
   <div className="row justify-content-center">
