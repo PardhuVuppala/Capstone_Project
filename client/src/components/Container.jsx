@@ -6,7 +6,6 @@ import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import AddIcon from '@mui/icons-material/Add';
 
 export default function Container() {
@@ -67,9 +66,9 @@ export default function Container() {
   }
   return (
     <div>
-          <ToastContainer />
-      <Navbar/>
-      <h1 className='text-center'>All the Containers Owned</h1>
+  <ToastContainer />
+  <Navbar/>
+  <h1 className='text-center'>All the Containers Owned</h1>
   <Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
   <Fab variant="extended" data-toggle="modal" data-target="#exampleModalCenter">
     <AddIcon sx={{ mr: 1 }} />

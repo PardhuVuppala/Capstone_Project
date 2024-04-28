@@ -7,6 +7,7 @@ import Prize from "../images/prize.png";
 import man from "../images/man.png";
 import Navbar from "./Navbar"
 import app from "../images/app.png";
+import Profile from "../images/Profile.jpeg";
 
 export default function HomeTester() {
   return (
@@ -124,7 +125,7 @@ export default function HomeTester() {
       <div className="flex my-8 max-w-auto">
         <div className="flex justify-center items-center flex-grow gap-28 ml-8">
           <div className="flex-none w-1/3 ">
-            <img className="rounded-lg" src={man} alt="Client testimonial" />
+            <img className="rounded-lg w-60 h-50" src={Profile} alt="Client testimonial" />
           </div>
 
           <div className="text-2xl font-medium flex-wrap  max-w-sm ">
