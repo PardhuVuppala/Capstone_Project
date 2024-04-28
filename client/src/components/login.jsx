@@ -78,7 +78,7 @@ export default function Login() {
             Cookies.set('ownername',ownername)
             setTimeout(()=>
             {
-              Navigate("/dashboard")
+              Navigate("/Home")
             },1000)
           })
           .catch(error =>{
