@@ -10,6 +10,7 @@ import BookedContainers from './components/BookedContainers';
 import Navbar from './components/Navbar';
 import HomeTester from './components/HomeTester';
 import Booking from './components/Booking';
+import Profile from './components/ProfilePage'
 function App() {
 return(
     <BrowserRouter>
@@ -24,6 +25,7 @@ return(
          <Route path ="/Booked" element={<BookedContainers/>}/>
          <Route path="/Nav" element={<Navbar/>}/>
          <Route path='/Home' element={<HomeTester/>}/>
+         <Route path='/Profile' element={<Profile/>}/>
         </Routes>
     </BrowserRouter>
 )

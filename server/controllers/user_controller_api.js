@@ -63,7 +63,52 @@ router.post('/login',async(req,res) =>
         res.status(500).json({ message: err.message || 'Error occurred during login' });
     }
 });
+router.post('/Profile', async (req, res) => {
+    try {
+        const { id } = req.body;
+        const details = await userModel.findOne({ _id: req.body.id }); // Corrected access to id
+        if (details) {
+            res.json(details);
+            console.log(details);
+        } else {
+            console.log("hello")
+            res.status(404).json({ error: 'User not found' }); // Handle case where user is not found
+        }
+    } catch (err) {
+        console.error('Error fetching user details:', err);
+        res.status(500).json({ error: 'Internal server error' }); // Handle internal server error
+    }
+});
 
+router.post('/Update', async (req, res) => {
+    try {
+        // Extract data from request body
+        const { user_id, name, email, Gender, phone, country, Address } = req.body;
+
+        // Find the user by user_id and update their details
+        const user = await userModel.findOneAndUpdate(
+            { _id: user_id }, // Assuming your user model has '_id' as the primary key
+            { 
+                username: name,
+                useremail: email,
+                usergender: Gender,
+                usermobile: phone,
+                usercountry: country,
+                useraddress: Address
+            },
+            { new: true } // To return the updated user document
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        res.status(200).json({ message: 'User details updated successfully', user });
+    } catch (error) {
+        console.error('Error updating user details:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
 
 router.post('/otp',async(req,res) =>
 {

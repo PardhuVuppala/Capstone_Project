@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import girl from '../images/girl.png';
 import courses from "../data/courses.json";
 import Personalized from "../images/personalized.png";
@@ -8,8 +8,21 @@ import man from "../images/man.png";
 import Navbar from "./Navbar"
 import app from "../images/app.png";
 import Profile from "../images/Profile.jpeg";
+import Cookies from 'js-cookie';
 
 export default function HomeTester() {
+ useEffect(()=>
+{
+  // Cookies.set('user_id',user_id);
+  //       Cookies.set('token',token);
+  //       Cookies.set('role',role);
+  //       Cookies.set('username',username)  
+  const user_id = Cookies.get("user_id");
+  const token = Cookies.get("token");
+  const role = Cookies.get("role");
+  const username = Cookies.get("username");
+})
+
   return (
     <div>
       <Navbar/>

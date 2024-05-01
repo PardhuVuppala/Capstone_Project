@@ -116,7 +116,7 @@ useEffect(()=>
                          <ListItemIcon>
                              <PersonIcon/>
                          </ListItemIcon>
-                         <ListItemText primary={"Profile"} />
+                         <ListItemText primary={<Link to="/Profile">Profile</Link>} />
                      </ListItemButton>
                  </ListItem>
                  <ListItem disablePadding>
@@ -189,7 +189,7 @@ useEffect(()=>
                     <ListItemIcon>
                         <PersonIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={"Profile"} />
+                    <ListItemText primary={<Link to="/Profile">Profile</Link>} />
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
