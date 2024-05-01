@@ -21,6 +21,8 @@ export default function HomeTester() {
   const token = Cookies.get("token");
   const role = Cookies.get("role");
   const username = Cookies.get("username");
+  const owner_id = Cookies.get('owner_id')
+
 })
 
   return (

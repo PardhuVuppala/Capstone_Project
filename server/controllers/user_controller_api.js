@@ -71,7 +71,6 @@ router.post('/Profile', async (req, res) => {
             res.json(details);
             console.log(details);
         } else {
-            console.log("hello")
             res.status(404).json({ error: 'User not found' }); // Handle case where user is not found
         }
     } catch (err) {

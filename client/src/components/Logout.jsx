@@ -12,7 +12,8 @@ export default function Logout() {
     Cookies.remove("token");
     Cookies.remove("role");
     Cookies.remove("user_id"); 
-    Cookies.remove("username")
+    Cookies.remove("username");
+    Cookies.remove("owner_id")
     notify("Successfully Logout")
     setTimeout(()=>{
         Navigate("/");

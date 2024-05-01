@@ -22,7 +22,7 @@ router.post('/register', async(req,res)=>
             owner_dob : req.body.owner_dob,
             owner_pass :hashedPassword,
             owner_gender: req.body.owner_gender,
-            owner_country : req.body.owner_counter,
+            owner_country : req.body.owner_country,
             owner_address : req.body.owner_address
         });
         const insertdocument = await OwnerObj.save();
@@ -65,6 +65,63 @@ router.post('/login',async(req,res)=>
        }
 
 });
+
+router.post('/Profile',async(req,res)=>
+{
+    try {
+    const{id} = req.body;
+    const details = await OwnerModel.findOne({_id : req.body.id})
+    
+    if (details) {
+        res.json(details);
+        // console.log(details)
+    } else {
+        res.status(404).json({ error: 'owner not found' }); // Handle case where user is not found
+    }
+}
+catch (err) {
+    console.log("Hello World")
+    console.error('Error fetching owner details:', err);
+    res.status(500).json({ error: 'Internal server error' }); // Handle internal server error
+}
+
+})
+
+
+
+
+router.post('/Update', async (req, res) => {
+    try {
+        // Extract data from request body
+        const { owner_id, name, email, Gender, phone, country, Address,company } = req.body;
+
+        // Find the user by user_id and update their details
+        const user = await OwnerModel.findOneAndUpdate(
+            { _id: owner_id }, // Assuming your user model has '_id' as the primary key
+            { 
+                owner_company  : req.body.company,
+                owner_name : req.body.name,
+                owner_email : req.body.email,
+                owner_mobile : req.body.phone,
+                // owner_dob : req.body.owner_dob,
+                owner_gender: req.body.Gender,
+                owner_country : req.body.country,
+                owner_address : req.body.Address
+            },
+            { new: true } // To return the updated user document
+        );
+
+        if (!user) {
+            return res.status(404).json({ error: 'owner not found' });
+        }
+
+        res.status(200).json({ message: 'Owner details updated successfully', user });
+    } catch (error) {
+        console.error('Error updating Owner details:', error);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 router.post('/otp' ,async(req,res)=>
 {    
      try

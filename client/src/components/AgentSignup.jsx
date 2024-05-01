@@ -100,11 +100,11 @@ export default function AgentSignup() {
                   </div>
                   <div className="form-group">
                     <label for="country" className="sr-only">Country</label>
-                    <input type="text" name="country" id="country" className="form-control" value={owner_country} onChange={(e)=>setOwnerCountry(e.target.value)}  required/>
+                    <input type="text" name="country" id="country" className="form-control" value={owner_country} onChange={(e)=>setOwnerCountry(e.target.value)} placeholder='country' required/>
                   </div>
                   <div className="form-group">
                     <label for="dob" className="sr-only">Date of Birth</label>
-                    <input type="text" name="country" id="dob" className="form-control" value={owner_dob} onChange={(e)=>setOwnerdob(e.target.value)}  required/>
+                    <input type="date" name="country" id="dob" className="form-control" value={owner_dob} onChange={(e)=>setOwnerdob(e.target.value)}  required/>
                   </div>
                   <div className="form-group">
                     <label for="address" className="sr-only">Address</label>
