@@ -5,7 +5,7 @@ const UserSchema = schema_mongoose.Schema(
           username  : {type  : String},
           useremail  : {type  : String},
           usermobile : {type  : String},
-          userdob  : {type  : String},
+          userdob  : {type  : Date},
           userpass  : {type  : String},
           usergender  : {type  : String},
           usercountry  : {type  : String},

@@ -14,6 +14,7 @@ const [country,setContry] = useState("");
 const [Address,setAddress]  = useState("");
 const [role,setRole]  =useState("");
 const [company,setCompany] = useState("");
+const [userDOB, setUserDOB] = useState(new Date());
 const notify = (message) => toast(message);
 
 const handleSubmitOwner=(e)=>{ 
@@ -151,18 +152,14 @@ useEffect(() => {
                             </select>
                         </div>
                         <div className="w-full">
-                            <h3 className="dark:text-gray-300 mb-2">Date Of Birth</h3>
-                            <input type="date"
-                                    className="form-control p-4" />
-                        </div>
-                    </div>
-                    <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                        <div className="w-full">
-                            <label for="" className=" dark:text-gray-300">Phone Number</label>
-                            <input type="phone"
+                        <h3 className="dark:text-gray-300 mb-2">Phone</h3>
+                                   <input type="phone"
                                     className="form-control p-4"
                                     placeholder="Phone no."  value={phone} onChange={(e)=>setPhone(e.target.value)}/>
                         </div>
+                    
+                    </div>
+                    <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                         <div className="w-full  mb-2">
                             <label for="" className="dark:text-gray-300">Country</label>
                             <input type="text"
@@ -231,11 +228,6 @@ useEffect(() => {
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                             </select>
-                        </div>
-                        <div className="w-full">
-                            <h3 className="dark:text-gray-300 mb-2">Date Of Birth</h3>
-                            <input type="date"
-                                    className="form-control p-4" />
                         </div>
                     </div>
                     <div className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">

@@ -117,7 +117,7 @@ export default function Container() {
   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
       <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLongTitle">Container Adding</h5>
+        <h5 className="text-center" id="exampleModalLongTitle">Container Adding</h5>
         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -134,28 +134,22 @@ export default function Container() {
         disabled
         required
       />
-
-      <input 
-        type="text" 
-        placeholder="Container Type" 
-        value={con_type} 
-        className='form-control mb-2'
-        onChange={(e) => setContainerType(e.target.value)}
-        required
-      />
-
-      <input 
-        type="text" 
-        placeholder="Container Dimension" 
-        value={con_dimension} 
-        className='form-control mb-2'
-        onChange={(e) => setContainerDimension(e.target.value)} 
-        required
-      />
+       <select className="form-control mb-2" id="typeFilter" value={con_type} onChange={(e) => setContainerType(e.target.value)} required>
+                    <option value="" disabled>Select Container Type</option>
+                    <option value="type A">Type-A</option>
+                    <option value="type B">Type-B</option>
+                    <option value="type C">Type-C</option>
+                  </select>
+      <select className="form-control mb-2" id="dimensionFilter" value={con_dimension} onChange={(e) => setContainerDimension(e.target.value)} required>
+                    <option value="" disabled>Select Container</option>
+                    <option value="18.3X2.44X2.59 : 60ft ">18.3X2.44X2.59 in M</option>
+                    <option value="12.2X2.44X2.59 : 40ft">12.2X2.44X2.59 in M</option>
+                    <option value="6.1X2.44X2.59 : 20ft">5.9X2.44X2.59 in M</option>
+        </select>
     
       </div>
       <div className="modal-footer">
-        <button type="submit" className="btn btn-primary">Save changes</button>
+        <button type="submit" className="btn btn-success">Add</button>
       </div>
       </form>    
     </div>

@@ -111,17 +111,17 @@ export default function AvailableContainer() {
               <div className="modal-body">
                 <div className="form-group">
                   <label htmlFor="dimensionFilter">Dimensions:</label>
-                  <select className="form-control" id="dimensionFilter" value={dimension} onChange={(e) => setDimension(e.target.value)}>
-                    <option>All</option>
-                    <option value="6X8X10">6X8X10</option>
-                    <option value="8X7X9">8X7X9</option>
-                    <option value="6X8X10">6X8X10</option>
+                  <select className="form-control" id="dimensionFilter" value={dimension} onChange={(e) => setDimension(e.target.value)} required>
+                    <option value="" disabled>Select Dimension Type</option>
+                    <option value="18.3X2.44X2.59 : 60ft ">18.3X2.44X2.59 in M</option>
+                    <option value="12.2X2.44X2.59 : 40ft">12.2X2.44X2.59 in M</option>
+                    <option value="6.1X2.44X2.59 : 20ft">5.9X2.44X2.59 in M</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="typeFilter">Type:</label>
-                  <select className="form-control" id="typeFilter" value={type} onChange={(e) => setType(e.target.value)}>
-                    <option>All</option>
+                  <select className="form-control" id="typeFilter" value={type} onChange={(e) => setType(e.target.value)} required>
+                   <option value="" disabled>Select Container Type</option>
                     <option value="type A">Type-A</option>
                     <option value="type B">Type-B</option>
                     <option value="type C">Type-C</option>
@@ -129,11 +129,11 @@ export default function AvailableContainer() {
                 </div>
                 <div className="form-group">
                   <label htmlFor="startDate">Start Date:</label>
-                  <input type="datetime-local" className="form-control" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+                  <input type="datetime-local" className="form-control" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} required/>
                 </div>
                 <div className="form-group">
                   <label htmlFor="endDate">End Date:</label>
-                  <input type="datetime-local" className="form-control" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+                  <input type="datetime-local" className="form-control" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} required/>
                 </div>
               </div>
               <div className="modal-footer">

@@ -92,7 +92,12 @@ export default function AgentSignup() {
                   </div>
                   <div className="form-group">
                     <label for="gender" className="sr-only">Gender</label>
-                    <input type="text" name="gender" id="gender" className="form-control"  placeholder="Gender" value={owner_gender} onChange={(e)=>setOwnerGender(e.target.value)} required/>
+                    <select value={owner_gender} onChange={(e)=>setOwnerGender(e.target.value)}
+                     className="form-control" id="typeFilter" required>
+                      <option value="" disabled>Select</option>
+                      <option value="Male" className='form-control'>Male</option>
+                      <option value="Female" className='form-control'>Female</option>
+                    </select>
                   </div>
                   <div className="form-group mb-4">
                     <label for="password" className="sr-only">Password</label>

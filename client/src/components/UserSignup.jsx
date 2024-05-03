@@ -16,6 +16,7 @@ export default function UserSignup() {
   const [usergender,setUsergender] = useState("");
   const [usercountry,setUsercountry] = useState("");
   const [useraddress,setUseraddress] = useState("");
+  const [userDOB, setUserDOB] = useState(new Date());
   const notify = (message) => toast(message);
   const Navigate = useNavigate();
   const handleSubmit=(e)=>{
@@ -27,7 +28,8 @@ export default function UserSignup() {
       userpass,
       usergender,
       usercountry,
-      useraddress
+      useraddress,
+      userDOB
     }
     axios.post('http://localhost:4500/user/register',body)
     .then(response => {
@@ -80,9 +82,18 @@ export default function UserSignup() {
                   </div>
                   <div className="form-group">
                     <label for="gender" className="sr-only">Gender</label>
-                    <input type="text" name="gender" id="gender" className="form-control" value={usergender} onChange={(e)=>setUsergender(e.target.value)} placeholder="Gender" required/>
+                    <select value={usergender} onChange={(e)=>setUsergender(e.target.value)}
+                     className="form-control" id="typeFilter" required>
+                      <option value="" disabled>Select</option>
+                      <option value="Male" className='form-control'>Male</option>
+                      <option value="Female" className='form-control'>Female</option>
+                    </select>
                   </div>
-                  <div className="form-group mb-4">
+                  <div className='form-group'>
+                    <label for="date" className="sr-only">Date</label>
+                    <input type="date" name="date" id="date" className="form-control" value={userDOB} onChange={(e)=>setUserDOB(e.target.value)} required/>
+                  </div>
+                  <div className="form-group ">
                     <label for="password" className="sr-only">Password</label>
                     <input type="password" name="password" id="password" className="form-control" value={userpass} onChange={(e)=>setUserpass(e.target.value)}  placeholder="***********" required/>
                   </div>
