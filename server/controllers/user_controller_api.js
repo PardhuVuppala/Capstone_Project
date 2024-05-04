@@ -5,7 +5,7 @@ const randomize = require('randomatic');
 const userModel = require('../modals/user_schema');
 const jwtgenerator = require("../JwtToken/jwtgenerator");
 const Authorize = require("../middleware/authorization");
-
+const mailservice = require("../services/registrationservices");
 
 router.post('/register', async (req, res) => {
     try {
@@ -112,12 +112,27 @@ router.post('/Update', async (req, res) => {
 router.post('/otp',async(req,res) =>
 {
    try{
-        const {useremail} = req.body;
-        const user  = await userModel.findOne({useremail : req.body.useremail});
-        if(!user)
+        const {Email} = req.body;
+        console.log(req.body)
+        const user  = await userModel.findOne({useremail : req.body.Email});
+        if(user)
         {
              const otp = randomize('0',4);
+             console.log(Email);
+             mailservice.sendmail(
+                Email,
+                "Here the OTP to Verify to Login",
+                `${otp}`
+             )
+        const token = jwtgenerator(user.id)
+        const user_id = user.id;
+        const username = user.username;
+        const role = "user"
              const body = {
+                token,
+                user_id,
+                username,
+                role,
                 otp
              }
              res.json(body)

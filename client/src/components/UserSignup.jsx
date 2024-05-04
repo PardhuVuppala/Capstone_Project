@@ -107,7 +107,7 @@ export default function UserSignup() {
                   </div>
                   <input name="login" id="login" className="btn btn-block login-btn mb-4" type="submit" value="Sign Up"/>
                 </form>
-                <p className="login-card-footer-text">Do you have an account? <Link to="/" className="text-reset">click here</Link></p>
+                <p className="login-card-footer-text">Return to Home Page?<Link to="/" className="text-reset">click here</Link></p>
             </div>
           </div>
         </div>

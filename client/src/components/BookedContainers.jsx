@@ -31,7 +31,7 @@ export default function BookedContainers() {
 <h1 className='text-center'>Booked Containers</h1>
 <div class="p-10">
 {bookedUsers.map(user => (
-  <div class="max-w-full  bg-white flex flex-col rounded overflow-hidden shadow-lg" key={user.user_id}>
+  <div class="max-w-full  bg-white flex flex-col rounded overflow-hidden shadow-lg mb-4" key={user.user_id}>
     <div class="flex flex-row items-baseline flex-nowrap bg-gray-100 p-2">
     </div>
     <div class="mt-2 flex justify-start bg-white p-2">

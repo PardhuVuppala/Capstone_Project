@@ -5,6 +5,7 @@ const OwnerModel = require('../modals/cantainer_owner_shema');
 const randomize = require('randomatic');
 const jwtgenerator = require("../JwtToken/jwtgenerator");
 const Authorize = require("../middleware/authorization");
+const mailservice = require("../services/registrationservices");
 router.post('/register', async(req,res)=>
 {
     try{
@@ -126,12 +127,25 @@ router.post('/otp' ,async(req,res)=>
 {    
      try
      {
-        const{owneremail} = req.body;
-        const present = await OwnerModel.findOne({owner_email : req.body.owneremail})
+        const {Email} = req.body;
+        const present = await OwnerModel.findOne({owner_email : req.body.Email})
         if(present)
         {   
             const otp = randomize('0', 4);  
+            const token = jwtgenerator(present.id);
+            const owner_id = present.id;
+            const ownername = present.owner_name ;
+            const role = "agent"
+            mailservice.sendmail(
+                Email,
+                "Here the OTP to Verify to Login",
+                `${otp}`
+             )
             const SendOtp = {
+                token,
+                owner_id,
+                ownername,
+                role,
                 otp
             }
             res.json(SendOtp)

@@ -39,7 +39,7 @@ export default function Login() {
          notify("Successfully Login");
          setTimeout(()=>
          {
-         Navigate("/Home");
+         Navigate("/");
          },1000)
   
 
@@ -76,9 +76,10 @@ export default function Login() {
             Cookies.set('token',token);
             Cookies.set('role',role);
             Cookies.set('ownername',ownername)
+            notify("Successfully Login");
             setTimeout(()=>
             {
-              Navigate("/Home")
+              Navigate("/")
             },1000)
           })
           .catch(error =>{
@@ -140,9 +141,7 @@ export default function Login() {
                   </div>
                   <input name="login" id="login" className="btn btn-block login-btn mb-4" type="submit" value="Login" />
                 </form>
-                <a href="#!" className="forgot-password-link">Forgot password?</a>
-                <p className="login-card-footer-text">Don't have an account? <Link to="/signup" className="text-reset">User Register here</Link></p>
-                <p className="login-card-footer-text">Don't have an account? <Link to="/AgentSignup" className="text-reset">Agent Register here</Link></p>
+                <p className="login-card-footer-text">Return to Home Page? <Link to="/" className="text-reset">Home</Link></p>
             </div>
           </div>
         </div>
