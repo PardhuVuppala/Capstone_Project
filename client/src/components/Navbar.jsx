@@ -65,7 +65,7 @@ const HandleLogout=(e)=>
       notify("Logout Successfully");
       setTimeout(()=>
       {
-        navigate("/")
+        window.location.href = '/';
       },1000)
 }
 
@@ -158,7 +158,7 @@ const OTPSubmit = async(e)=>
           setrtoken("");
           setrusername("");
           setTimeout(() => {
-          navigate("/");
+            window.location.href = '/';
         },1000)
         }
         else
@@ -184,7 +184,7 @@ const OwnerOtpSubmit = async(e)=>
           setrtoken("");
           setrusername("");
           setTimeout(() => {
-          navigate("/");
+            window.location.href = '/';
         },1000)
         }
         else

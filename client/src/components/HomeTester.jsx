@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import girl from '../images/girl.png';
 import courses from "../data/courses.json";
 import Personalized from "../images/personalized.png";
@@ -9,8 +9,13 @@ import Navbar from "./Navbar"
 import app from "../images/app.png";
 import Profile from "../images/Profile.jpeg";
 import Cookies from 'js-cookie';
-
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import axios from 'axios';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 export default function HomeTester() {
+  const [Messages,setMessages] = useState([]);
+  const [role,setRole] = useState("")
  useEffect(()=>
 {
   // Cookies.set('user_id',user_id);
@@ -21,13 +26,88 @@ export default function HomeTester() {
   const token = Cookies.get("token");
   const role = Cookies.get("role");
   const username = Cookies.get("username");
-  const owner_id = Cookies.get('owner_id')
+  const owner_id = Cookies.get('owner_id');
+  setRole(role);
+  if(role==="user")
+    { const require_id = user_id; 
+      const body= {
+        require_id
+    } 
+      axios.post("http://localhost:4500/Notification/notification",body) 
+      .then(response=>
+          {   console.log(response.data)
+              setMessages(response.data);
+          })
+      .catch(error => {
+             console.error(error);
+          });
+          
+    }
+    else if(role==="agent")
+    {
+      const require_id = owner_id;
+      const body= {
+        require_id
+    } 
+      axios.post("http://localhost:4500/Notification/notification",body) 
+      .then(response=>
+          {   console.log(response.data)
+              setMessages(response.data);
+          })
+      .catch(error => {
+             console.log(error);
+          });
 
-})
+    }
+   
+},[])
 
   return (
     <div>
-      <Navbar/>
+    <Navbar/>
+    {role && (
+      <Box sx={{ position: 'fixed', top: '50px', right: '5px', zIndex: '1000' }}>
+      <Fab variant="extended" data-toggle="modal" data-target="#exampleModalCenter">
+      <NotificationsIcon sx={{ mr: 0 }} />
+      </Fab>
+      </Box>
+    )}
+    
+    {/* Notification Toogle */}
+    
+  <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div className="modal-dialog" role="document" style={{ position: 'fixed', top: '110px', right: '20px', margin: '0', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title text-center" id="exampleModalLongTitle">Notification</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div className="modal-body">
+        {Messages.map(message => (
+          <div key={message._id} className="alert alert-primary" role="alert">
+            <h5 className="alert-heading">{message.message}</h5>
+            <p className="mb-0">Message At: {message.date}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
        <div className=" flex items-center h-[680px] ">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-row md:flex-row md:justify-between gap-40 items-center h-full">
           <div className="text-white text-center md:text-left">

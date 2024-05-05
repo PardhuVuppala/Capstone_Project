@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const BookModal = require('../modals/Booking_Scheme');
 const ContModal = require('../modals/container_schema');
-const UserModal = require('../modals/user_schema')
+const UserModal = require('../modals/user_schema');
+const NotificationModel = require('../modals/Notification_Schema');
+const AgentModel = require('../modals/cantainer_owner_shema');
 
 
 router.post('/register',async(req,res)=>{
@@ -15,6 +17,10 @@ router.post('/register',async(req,res)=>{
                 { start_time: { $eq: start_time }, end_time: { $eq: end_time } } // Same time booking
             ]
         })
+        const cont_details = await ContModal.findOne({_id : req.body.cont_id})
+        const user_details = await UserModal.findOne({_id : req.body.user_id})
+        const owner_details = await AgentModel.findOne({_id : req.body.agent_id})
+        // console.log(user_details);
         if(existingBooking)
         {
             return res.status(400).json({ message: "cont already booked for the given time slot." }); 
@@ -27,6 +33,24 @@ router.post('/register',async(req,res)=>{
             end_time: req.body.end_time
         })
         await newBooking.save();
+        // user Notification
+        user_message="You booked conatiner id : " + cont_details.con_uniqueid + ".Owner Name : "+ cont_details.owner_name+ " Phone Number :" + owner_details.owner_mobile + ". from start time: "+ req.body.start_time+ " end time: "+req.body.end_time;
+        console.log(user_message);
+        const NotificationObj = new NotificationModel({
+            require_id  :req.body.user_id,
+            message: user_message,
+        });
+
+        await NotificationObj.save();
+       // Owner Notification
+        owner_message="Your Container has been booked conatiner id : " + cont_details.con_uniqueid +". Customer Name : " + user_details.username + " Phone Number : "+user_details.usermobile+ ". from start time: "+ req.body.start_time+ " end time: "+req.body.end_time;
+        console.log(owner_message)
+        const NotificationAgent = new NotificationModel({
+            require_id  :req.body.agent_id,
+            message: owner_message,
+        });
+        await NotificationAgent.save(); 
+
         return res.status(200).json({ message: "cont booked successfully." });
 
     }

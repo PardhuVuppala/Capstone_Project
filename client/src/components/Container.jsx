@@ -113,8 +113,8 @@ export default function Container() {
            ))}
         </div>
 
-<div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div className="modal-dialog modal-dialog-centered" role="document">
+ <div className="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   <div className="modal-dialog modal-dialog-centered" role="document">
     <div className="modal-content">
       <div className="modal-header">
         <h5 className="text-center" id="exampleModalLongTitle">Container Adding</h5>
@@ -154,7 +154,9 @@ export default function Container() {
       </form>    
     </div>
     </div>
+  </div>
     </div>
-    </div>
-  )
+  
+
+)
 }

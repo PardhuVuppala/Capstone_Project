@@ -10,8 +10,11 @@ const userApi = require('./controllers/user_controller_api')
 const contApi = require('./controllers/container_api');
 const ownerAPI = require('./controllers/owner_api');
 const BookingContainer = require('./controllers/booking_container');
+const NotificationApi = require('./controllers/notification_api');
 app.use('/con',contApi);
 app.use('/user',userApi);
 app.use('/owner',ownerAPI);
 app.use('/Booking',BookingContainer)
+app.use('/Notification',NotificationApi)
+
 app.listen(4500, () => console.log('EXPRESS Server Started at Port No: 4500 '));
