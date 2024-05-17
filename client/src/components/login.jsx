@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import Cookies from 'js-cookie';
 import '../assets/login.css'
-import Icon from '../images/logo.svg'
+import Icon from '../images/logo1.jpg'
 import ILogin from '../images/login.jpg'
 import {Link} from 'react-router-dom'
 import { ToastContainer, toast} from 'react-toastify';
@@ -110,7 +110,7 @@ export default function Login() {
           <div className="col-md-7">
             <div className="card-body">
               <div className="brand-wrapper">
-                <img src={Icon} alt="logo" className="logo"/>
+                <img src={Icon} alt="Containermart" className="logo"/>
               </div>
               <p className="login-card-description">Sign into your account</p>
               <form onSubmit={handleSubmit}>
@@ -149,6 +149,6 @@ export default function Login() {
    
     </div>
   </main>
-    </div>
+</div>
   )
 }

@@ -62,7 +62,7 @@ export default function AvailableContainer() {
         console.error(error);
       });
   };
-  
+  const currentDate = new Date().toISOString().slice(0, 16);
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(container);
@@ -246,7 +246,7 @@ export default function AvailableContainer() {
                       className="block mb-2 text-sm font-medium text-gray-900">
                        Booking Slot    
                     </label>
-                    <input type="datetime-local" className="form-control" name="start_time" value={start_time} onChange={(e) => setStarttime(e.target.value)} required/>
+                    <input type="datetime-local" className="form-control" name="start_time" value={start_time} onChange={(e) => setStarttime(e.target.value)} min={currentDate} required/>
                   </div>
                   <div>
                     <label
@@ -255,7 +255,7 @@ export default function AvailableContainer() {
                     >
                       End Slot
                     </label>
-                    <input type="datetime-local" className="form-control" name="end_time" value={end_time} onChange={(e) => setEndTime(e.target.value)} required />
+                    <input type="datetime-local" className="form-control" name="end_time" value={end_time} onChange={(e) => setEndTime(e.target.value)} min={currentDate} required />
                   </div>
                   <button
                     type="submit"

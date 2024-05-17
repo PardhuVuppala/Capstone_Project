@@ -1,38 +1,38 @@
 [
     {
         "id": 1,
-        "title": "Introduction to React",
+        "title": "Dry Storage Container",
         "description": "Learn the basics of React and how to create web applications using this popular front-end library.",
         "duration": "2 hours",
         "level": "Beginner",
-        "image": "https://i.morioh.com/2019/10/23/620a990fe531.jpg",
+        "image": "https://img.freepik.com/premium-photo/transport-trucks-cargo-containers_933496-5179.jpg",
         "video": "https://example.com/react-intro.mp4"
     },
     {
         "id": 2,
-        "title": "Advanced React Techniques",
+        "title": "Refrigerated Container",
         "description": "Take your React skills to the next level with advanced techniques like Redux, server-side rendering, and more.",
         "duration": "3 hours",
         "level": "Intermediate",
-        "image": "https://www.classcentral.com/report/wp-content/uploads/2022/10/React-JS-BCG-Banner.png",
+        "image": "https://t4.ftcdn.net/jpg/05/34/07/97/360_F_534079732_Tz6e6Z05gWr8tDCXlny6jhfBGNQZGveV.jpg",
         "video": "https://example.com/react-advanced.mp4"
     },
     {
         "id": 3,
-        "title": "React Native for Mobile Development",
+        "title": "Cargo Storage Roll Container",
         "description": "Learn how to create mobile apps with React Native, the popular cross-platform framework for building native apps for iOS and Android.",
         "duration": "4 hours",
         "level": "Advanced",
-        "image": "https://i.ytimg.com/vi/_ivIUCSOZ78/maxresdefault.jpg",
+        "image": "https://www.alconet-containers.com/app/uploads/2017/04/alconet-1-4.jpg",
         "video": "https://example.com/react-native.mp4"
     },
     {
         "id": 4,
-        "title": "Building Web Applications with Node.js",
+        "title": "Open Top Container",
         "description": "Learn how to create web applications with Node.js, the popular server-side JavaScript platform.",
         "duration": "5 hours",
         "level": "Intermediate",
-        "image": "https://www.thincor.in/wp-content/uploads/2018/01/nodejs-1.jpg",
+        "image": "https://wallpapercave.com/wp/wp8889215.jpg",
         "video": "https://example.com/nodejs.mp4"
     }
 ]
