@@ -283,14 +283,14 @@ useEffect(()=>
                      </ListItemButton>
                  </ListItem>
                  
-                 <ListItem disablePadding>
+                 {/* <ListItem disablePadding>
                      <ListItemButton>
                          <ListItemIcon>
                              <InboxIcon />
                          </ListItemIcon>
                          <ListItemText primary={"inbox"} />
                      </ListItemButton>
-                 </ListItem>
+                 </ListItem> */}
 
                  <ListItem disablePadding>
                 <ListItemButton>
@@ -306,16 +306,7 @@ useEffect(()=>
         {role==="agent" && (
             <div>
             <List>
-            {/* {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                <ListItem key={text} disablePadding>
-                    <ListItemButton>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItemButton>
-                </ListItem>
-            ))} */}
+            
        
             
       
@@ -356,14 +347,6 @@ useEffect(()=>
                 </ListItemButton>
             </ListItem>
       
-            <ListItem disablePadding>
-                <ListItemButton>
-                    <ListItemIcon>
-                        <InboxIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={"inbox"} />
-                </ListItemButton>
-            </ListItem>
             <ListItem disablePadding>
                 <ListItemButton>
                     <ListItemIcon>
@@ -708,18 +691,18 @@ useEffect(()=>
 
 
 
-            <MenuIcon className='height:25px'
+            <MenuIcon className="h-40 w-40 bg-light"
                 onClick={
-                    toggleDrawer("left", true)
+                    toggleDrawer("right", true)
                 }
             />
 
             <Drawer
-                anchor={"left"}
-                open={state["left"]}
-                onClose={toggleDrawer("left", false)}
+                anchor={"right"}
+                open={state["right"]}
+                onClose={toggleDrawer("right", false)}
             >
-                {list("left")}
+                {list("right")}
             </Drawer>
 
         </div>

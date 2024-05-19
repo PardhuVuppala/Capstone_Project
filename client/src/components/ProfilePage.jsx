@@ -107,7 +107,7 @@ useEffect(() => {
     <div>
       <Navbar/>
       <ToastContainer/>
-      <h1 className="text-center">Profile Page</h1>
+      {/* <h1 className="text-center">Profile Page</h1> */}
       {role==="user" && (
       <section className="py-10 my-auto ">
        
@@ -119,7 +119,7 @@ useEffect(() => {
                     className="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
                     Profile
                 </h1>
-                <h2 className="text-grey text-sm mb-4 dark:text-gray-400 text-center">Edit Profile</h2>
+                <h2 className="text-grey text-sm mb-4 dark:text-gray-600 text-center">Edit Profile</h2>
                 <form onSubmit={handleSubmit}>
                    
                         <div
