@@ -99,7 +99,7 @@ export default function Login() {
   }
   return (
     <div>
-      <main className="d-flex align-items-center min-vh-100 py-3 py-md-0">
+      <main className="d-flex align-items-center min-vh-100 py-3 py-md-0 ">
     <div className="container">
       <ToastContainer/>
       <div className="card login-card">
