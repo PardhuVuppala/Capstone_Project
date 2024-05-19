@@ -8,9 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
+
 
 export default function AvailableContainer() {
   const [start_time, setStarttime] = useState('');
+  const [State,setState]=useState(true);
   const [end_time, setEndTime] = useState('');
   const [container, setContainer] = useState(null);
   const [containers, setContainers] = useState([]);
@@ -30,7 +33,10 @@ export default function AvailableContainer() {
   const closeModal = () => {
     setShowAuthenticationModal(false);
   };
-
+   const Refresher=()=>
+  {
+    window.location.href = "avaliablecontainer";
+  }
 
   useEffect(() => {
     axios.get('http://localhost:4500/con/containers')
@@ -42,7 +48,8 @@ export default function AvailableContainer() {
         console.error('Error fetching containers:', error);
       });
   }, []);
-  const handleSearch = (e) => {
+
+const handleSearch = (e) => {
     e.preventDefault();
     const body = {
       start_time: startDate,
@@ -57,6 +64,7 @@ export default function AvailableContainer() {
         const availabilityData = response.data.containersWithAvailability;
         const filteredContainers = containers.filter(container => availabilityData[container._id]);
         setFilteredContainers(filteredContainers);
+        setState(false);
       })
       .catch(error => {
         console.error(error);
@@ -144,18 +152,34 @@ export default function AvailableContainer() {
           </div>
         </div>
       </div>
-
-
       <div>
       </div>
       <Navbar/>
+      
       <h1 className='text-center'>Container List</h1>
-      <Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
+
+{!State && (
+ <Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
+ <Fab variant="extended" data-toggle="modal" onClick={Refresher}>
+   <FilterAltOffIcon sx={{ mr: 1 }} />
+   Filter Container
+ </Fab>
+</Box>
+)}
+
+{State && (
+
+<Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
   <Fab variant="extended" data-toggle="modal" data-target="#exampleModalCenter">
     <FilterAltIcon sx={{ mr: 1 }} />
     Filter Container
   </Fab>
 </Box>
+
+)}   
+ 
+
+      
 <div className="row no-gutters" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
   {/* {console.log(filteredContainers)} Add this line */}
 

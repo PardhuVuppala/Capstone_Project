@@ -1,4 +1,5 @@
 import React, { useEffect,useState } from 'react'
+import { Link } from 'react-router-dom';
 import girl from '../images/girl.png';
 import courses from "../data/courses.json";
 import Personalized from "../images/personalized.png";
@@ -60,7 +61,17 @@ export default function HomeTester() {
 
     }
    
-},[])
+},[]);
+const handleEnquireNowClick = () => {
+  const isLoggedIn = role && role !== ""; // Check if user is logged in
+  if (isLoggedIn) {
+    // If user is logged in, redirect to available containers
+    window.location.href = "avaliablecontainer"; // Replace with your actual page
+  } else {
+    // If user is not logged in, redirect to login page
+    window.location.href = "Login"; // Replace with your actual login page
+  }
+};
 
   return (
     <div>
@@ -75,7 +86,7 @@ export default function HomeTester() {
     
     {/* Notification Toogle */}
     
-  <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div className="modal fade" id="exampleModalCenter" tabIndex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div className="modal-dialog" role="document" style={{ position: 'fixed', top: '110px', right: '20px', margin: '0', maxHeight: 'calc(100vh - 200px)', overflowY: 'auto' }}>
     <div className="modal-content">
       <div className="modal-header">
@@ -96,32 +107,21 @@ export default function HomeTester() {
   </div>
 </div>
 
-    
-
-
-
-
-
-
-
-
-
-
 
        <div className=" flex items-center h-[680px] ">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-row md:flex-row md:justify-between gap-40 items-center h-full">
           <div className="text-white text-center md:text-left">
             <h1 className="text-4xl font-bold mb-4">
-              Start learning <br />
-              from the world's <br />
-              best learning institutions
+              Logistics made <br />
+              easy through <br />
+              Digital Solutions...
             </h1>
             <h2 className="text-xl mb-4">
-              Build skills with Courses, Certificates, and degrees <br />
-              Online from the World-class Universities.
+              Register and you will soon be able to <br />
+              manage your logistics online.
             </h2>
-            <button className="bg-white text-teal-800 py-2 px-4 rounded-lg text-lg font-bold hover:bg-teal-700 hover:text-white">
-              Register
+            <button onClick={handleEnquireNowClick} className="bg-teal-500 hover:bg-teal-600 text-white py-2 px-4 rounded-lg text-lg font-bold border">
+              Enquire Now
             </button>
           </div>
           <div className="hidden md:block flex-1 h-auto">
@@ -130,138 +130,140 @@ export default function HomeTester() {
         </div>
       </div>
 
-      {/* Course Cards */}
-        
+     <section id="containers">  
       <div>
-      <h1 className="text-center text-5xl mt-4 mb-10 font-bold text-blue-900">Explore Top Courses</h1>
+      <h1 className="text-center text-5xl mt-4 mb-10 font-bold">
+  <span style={{ backgroundColor: 'rgba(128, 40, 40, 0.5)', color: '#ffffff' }} className="p-2 rounded ">Shipping Containers</span>
+</h1>
+
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mx-8 my-8">
-        {courses.map((course) => (
-          <div key={course.id} className="bg-white shadow-md rounded-lg overflow-hidden">
-            <img src={course.image} alt={course.title} className="w-full h-48 object-fill" />
-            <div className="p-4">
-              <h2 className="font-bold text-lg mb-2">{course.title.slice(0,25) + '...'}</h2>
-              <p className="text-gray-700 text-base">{course.description.slice(0,100) + "..."}</p>
-              <ul className="mt-2 text-sm text-gray-600">
-                <li>Duration: {course.duration}</li>
-                <li>Level: {course.level}</li>
-              </ul>
-              <a href={course.video} className="mt-4 block text-center bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 focus:outline-none focus:shadow-outline">Watch Now</a>
-            </div>
-          </div>
-        ))}
+  {courses.map((course) => (
+    <div key={course.id} className="relative">
+      <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col">
+        <img src={course.image} alt={course.title} className="h-80 object-cover" />
       </div>
-      <div className="flex justify-center mt-4">
-        <button className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 mb-8 rounded">
-          View All Courses
-        </button>
+      <div className="mt-4 text-center">
+        <h2 className="font-bold text-2xl text-white">{course.title}</h2>
       </div>
     </div>
+  ))}
+</div>
+
+      <div className="flex justify-center mt-4">
+      <Link to="/avaliablecontainer">
+        <button className="bg-teal-500 hover:bg-teal-600 text-white font-bold py-2 px-4 mb-8 rounded border border-light">
+          View All Containers
+        </button>
+        </Link>
+      </div>
+    </div>
+    </section> 
 
      {/* Reasons */}
-     <div className=" flex flex-col items-center mx-auto py-10 px-4 mb-16 sm:px-6 lg:px-8 bg-[#1b3146]">
-      <div className="text-5xl font-bold mb-20 text-center text-white">
-        Why E-Learning Academy Works
+     <div className="flex flex-col items-center mx-auto py-10 px-4 mb-16 sm:px-6 lg:px-8 bg-[#1b3146]">
+  <div className="text-5xl font-bold mb-20 text-center text-white">
+    We Offer
+  </div>
+  <div className="flex flex-col md:flex-row justify-between gap-20 items-center">
+    {[
+      {
+        img: Personalized,
+        title: "Customization",
+        text: "Select the size, condition and door direction that meet needs. Sen selectiona and checkout through our secure payment portal.",
+      },
+      {
+        img: Trusted,
+        title: "Networking",
+        text: "We provide container networking service with our vast network which enables us in delivering goods to every corner of the globe.",
+      },
+      {
+        img: Prize,
+        title: "Pickup and Drop",
+        text: "Our team always strives to make sure that all goods are picked up and delivered at door step, so that you can enjoy hassle-free shipping.",
+      },
+      {
+        img: girl,
+        title: "Technical Support",
+        text: "We offer beautiful and effective custom applications designed to increase sales and control shipments.",
+      },
+    ].map((offer, index) => (
+      <div key={index} className="flex flex-col justify-between items-center text-center h-full p-6 bg-white rounded-lg shadow-md flex-1">
+        <img className="w-full h-48 object-cover mb-4" src={offer.img} alt={offer.title} />
+        <h3 className="text-xl font-bold text-[#1b3146]">{offer.title}</h3>
+        <p className="text-slate-500 max-w-[250px] mt-4">{offer.text}</p>
       </div>
-      <div className="flex flex-col md:flex-row  justify-between gap-20 items-center ">
-        <div className="flex flex-col justify-center items-center md:mr-16 pt-14 ">
-          <img
-            className="w-40 "
-            src={Personalized}
-            alt="Personalized learning"
-          />
-          <h3 className="text-xl font-bold mt-8 mb-4 text-white ">
-            Personalized Learning
-          </h3>
-          <p className="text-slate-500 text-center max-w-[250px] ">
-            Challenge yourself and change your career with an 10-13.
-          </p>
-        </div>
-        <div className="flex flex-col justify-center items-center md:mx-8 pt-7">
-          <img
-            className="w-40"
-            src={Trusted}
-            alt=""
-          />
-          <h3 className="text-xl font-bold mt-8 mb-4 text-white ">
-            Trusted content
-          </h3>
-          <p className="text-slate-500 text-center max-w-[250px] ">
-            Challenge yourself and change your career with an 10-13.
-          </p>
-        </div>
-        <div className="flex flex-col justify-center items-center md:ml-16  pt-3">
-          <img
-            className="w-40 "
-            src={Prize}
-            alt=""
-          />
-          <h3 className="text-xl font-bold mt-8 mb-4 text-white ">
-            Tools to empower teachers
-          </h3>
-          <p className="text-slate-500 text-center max-w-[250px] ">
-            Challenge yourself and change your career with an 10-13.
-          </p>
-        </div>
-      </div>
-    </div>
+    ))}
+  </div>
+</div>
 
-    {/* CLient Testimonial */}
-    <div className="flex flex-col items-center">
-      <div className="flex flex-col items-center">
-        <h2 className="text-5xl font-bold mb-4">
-          What Our Clients Say About Us
-        </h2>
-        <h3 className="text-lg font-medium mb-6 flex-wrap max-w-lg">
-          Build skills with courses, certificates, and degrees online from
-          world-class universities. Graduate. This short quiz will sort.
-        </h3>
-      </div>
 
-      <div className="flex my-8 max-w-auto">
-        <div className="flex justify-center items-center flex-grow gap-28 ml-8">
-          <div className="flex-none w-1/3 ">
-            <img className="rounded-lg w-60 h-50" src={Profile} alt="Client testimonial" />
-          </div>
+<section id="about">
+<div className="flex flex-col items-center" style={{ backgroundColor: 'rgba(128, 128, 128, 0.25)' }}>
+  <div className="text-center">
+    <h1 className="text-5xl mt-4 mb-10 font-bold">
+      <span style={{ backgroundColor: 'rgba(128, 128, 128, 0.5)', color: '#ffffff' }} className="p-2 rounded">About Us</span>
+    </h1>
+  </div>
 
-          <div className="text-2xl font-medium flex-wrap  max-w-sm ">
-            "I started with their free courses but quickly became a customer
-            once I saw how useful the lessons were."
-            <h4 className="text-base font-bold mt-20">
-              Cameron Wilson,
-            </h4>
-              <h5> The Disney Company</h5>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div className="flex items-center justify-center" alignment="justify"> 
+    <h2 className="text-lg font-medium mb-6 text-light flex-wrap max-w-2xl mr-4" >
+      We're dedicated to modernizing container logistics management. With our expertise, we tackle the complexities of container operations efficiently. Our platform offers tailored solutions for businesses of all sizes. By optimizing processes and providing real-time tracking, we empower you to enhance efficiency and reduce costs. Join us and revolutionize your container management experience with us.
+    </h2  >
+  
+    <img className="rounded-lg w-full h-80 m-4" src={Profile} alt="Client testimonial" />
+  </div>
+</div>
+</section>
+<br></br>
+<section id="reviews">
+<h2 className="text-center text-3xl mt-4 mb-10 font-bold">
+  <span style={{ backgroundColor: 'rgba(128, 40, 40, 0.5)', color: '#ffffff' }} className="p-2 rounded ">Customers Review</span>
+</h2>   <div class="max-w-screen-xl px-4 py-8 mx-auto m-2 text-center lg:py-16 lg:px-6 bg-dark rounded">
+      <figure class="max-w-screen-md mx-auto">
+          <svg class="h-12 mx-auto mb-3 text-gray-400 dark:text-gray-600" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
+          </svg> 
+          <blockquote>
+              <p class="text-2xl font-medium text-gray-900 dark:text-white">"Great first experience for shipping containers. Very Impressed."</p>
+          </blockquote>
+          <figcaption class="flex items-center justify-center mt-6 space-x-3">
+              <img class="w-6 h-6 rounded-full" src={man} alt="profile picture" />
+              <div class="flex items-center divide-x-2 divide-gray-500 dark:divide-gray-700">
+                  <div class="pr-3 font-medium text-gray-900 dark:text-white">Nimai</div>
+                  {/* <div class="pl-3 text-sm font-light text-gray-500 dark:text-gray-400"></div> */}
+              </div>
+          </figcaption>
+      </figure>
+  </div>
+</section>
 
-    {/* Footer */}
+
     <footer className="bg-cyan-800 text-white py-6">
       <div className="container mx-auto flex flex-wrap">
         <div className="w-full lg:w-1/4 px-4 mb-8">
           <h4 className="text-xl font-bold mb-4">Company</h4>
           <ul className="list-none">
-            <li className="mb-2"><a href="#">About Us</a></li>
-            <li className="mb-2"><a href="#">Blog</a></li>
-            <li className="mb-2"><a href="#">Careers</a></li>
-            <li className="mb-2"><a href="#">Contact Us</a></li>
+            <li className="mb-2"><a href="#about" className="hover:text-white">About Us</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Services</a></li>
+            <li className="mb-2"><a href="#reviews" className="hover:text-white">Reviews</a></li>
           </ul>
         </div>
         <div className="w-full lg:w-1/4 px-4 mb-8">
           <h4 className="text-xl font-bold mb-4">Support</h4>
           <ul className="list-none">
-            <li className="mb-2"><a href="#">Help Center</a></li>
-            <li className="mb-2"><a href="#">Safety Center</a></li>
-            <li className="mb-2"><a href="#">Community Guidelines</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Help Center</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Safety Center</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Community Guidelines</a></li>
           </ul>
         </div>
         <div className="w-full lg:w-1/4 px-4 mb-8">
           <h4 className="text-xl font-bold mb-4">Legal</h4>
           <ul className="list-none">
-            <li className="mb-2"><a href="#">Cookies Policy</a></li>
-            <li className="mb-2"><a href="#">Privacy Policy</a></li>
-            <li className="mb-2"><a href="#">Terms of Service</a></li>
-            <li className="mb-2"><a href="#">Law Enforcement</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Cookies Policy</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Privacy Policy</a></li>
+            <li className="mb-2"><a href="#" className="hover:text-white">Terms of Service</a></li>
+            
           </ul>
         </div>
         <div className="w-full lg:w-1/4 px-4 lg:mt-0 mt-8">
@@ -279,7 +281,7 @@ export default function HomeTester() {
       <hr className=" border-gray-700" />
       <div className=" mx-auto flex flex-wrap items-center  ">
         <div className="text-center w-full lg:w-1/2 px-4">
-          <p className="text-sm text-slate-300 ">@ 2020 Bravaa. All rights reserved.</p>
+          <p className="text-sm text-slate-300 ">@ 2024 Capstone. All rights reserved.</p>
         </div>
         <div className=" flex gap-4  w-full lg:w-1/2 px-4 lg:text-right ">
 {/*         
