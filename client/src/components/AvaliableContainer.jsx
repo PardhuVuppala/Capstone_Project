@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // import Header from './Header';
 import Navbar from "./Navbar";
 import axios from 'axios';
@@ -21,10 +22,21 @@ export default function AvailableContainer() {
   const [dimension, setDimension] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [Role,setRole] = useState("");
   const [filteredContainers, setFilteredContainers] = useState([]);
   const [FilteredId, setFilteredId] = useState([]);
   const notify = (message) => toast(message);
   const [showAuthenticationModal, setShowAuthenticationModal] = useState(false);
+  const Navigate = useNavigate();
+  const onLogin =() =>{
+            notify("Please Login for proceed with the booking");
+            setTimeout(()=>
+              {
+                Navigate("/Login");
+              },2000)
+         
+
+    }
 
   const toggleAuthenticationModal = () => {
     setShowAuthenticationModal(!showAuthenticationModal);
@@ -43,6 +55,9 @@ export default function AvailableContainer() {
       .then(response => {
         setContainers(response.data);
         setFilteredContainers(response.data); // Initially, display all containers
+        const role = Cookies.get("role");
+        setRole(role);
+
       })
       .catch(error => {
         console.error('Error fetching containers:', error);
@@ -212,14 +227,31 @@ const handleSearch = (e) => {
             <p>Container ID</p>
             <p className="font-bold">{container.con_uniqueid}</p>
           </div>
-        <button
-        className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-        type="button"
-        onClick={()=>{toggleAuthenticationModal();setContainer(container) ;}}
-         >
-        Book
-      </button>
-        </div>
+        {Role && (
+          <button
+          className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          type="button"
+          onClick={()=>{toggleAuthenticationModal();setContainer(container) ;}}>
+          Book
+        </button>
+        )}
+
+
+        {!Role && (
+          <button
+          className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+          type="button"
+          onClick={onLogin}>
+          Book
+        </button>
+        )}
+
+        
+
+
+        
+      
+      </div>
       </div>
     </div>
   </div>

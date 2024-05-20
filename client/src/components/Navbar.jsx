@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Fab from '@mui/material/Fab';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -376,7 +377,14 @@ useEffect(()=>
             ))} */}
        
             
-      
+       <ListItem disablePadding>
+                <ListItemButton>
+                    <ListItemIcon>
+                        <CheckCircleIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={<Link to="/avaliablecontainer">Avaliable Containers</Link>} />
+                </ListItemButton>
+            </ListItem>
 
             <ListItem disablePadding>
                 <ListItemButton >
@@ -689,14 +697,17 @@ useEffect(()=>
                 </React.Fragment>
             ))} */}
 
-
-
-            <MenuIcon className="h-40 w-40 bg-light"
-                onClick={
-                    toggleDrawer("right", true)
-                }
+            <Box sx={{ position: 'fixed', top: '10px', right: '5px', zIndex: '1000' }}>
+            <Fab>
+            <MenuIcon className="h-80 w-80"
+            onClick={
+            toggleDrawer("right", true)
+            }
             />
+            </Fab>
+            </Box>
 
+           
             <Drawer
                 anchor={"right"}
                 open={state["right"]}

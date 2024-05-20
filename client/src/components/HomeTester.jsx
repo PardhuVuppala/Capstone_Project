@@ -77,7 +77,7 @@ const handleEnquireNowClick = () => {
     <div>
     <Navbar/>
     {role && (
-      <Box sx={{ position: 'fixed', top: '50px', right: '5px', zIndex: '1000' }}>
+      <Box sx={{ position: 'fixed', top: '70px', right: '5px', zIndex: '1000' }}>
       <Fab variant="extended" data-toggle="modal" data-target="#exampleModalCenter">
       <NotificationsIcon sx={{ mr: 0 }} />
       </Fab>

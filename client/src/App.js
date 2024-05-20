@@ -10,7 +10,8 @@ import BookedContainers from './components/BookedContainers';
 import Navbar from './components/Navbar';
 import HomeTester from './components/HomeTester';
 import Booking from './components/Booking';
-import Profile from './components/ProfilePage'
+import Profile from './components/ProfilePage';
+import Payment from './components/Payment';
 function App() {
 return(
     <BrowserRouter>
@@ -18,14 +19,15 @@ return(
         <Route path="/Login" element={<Login/>}/>
         <Route path="/signup" element={<UserSignup/>}/>
         <Route path="/AgentSignup" element={<AgentSignup/>}/>
-         <Route path="/avaliablecontainer" element={<AvaliableContainer/>}/>
-         <Route path="/Booking" element={<Booking/>}/>
-         <Route path="/Logout" element={<Logout/>}/>
-         <Route path="/conatainer" element={<Container/>}/>
-         <Route path ="/Booked" element={<BookedContainers/>}/>
-         <Route path="/Nav" element={<Navbar/>}/>
-         <Route path='/' element={<HomeTester/>}/>
-         <Route path='/Profile' element={<Profile/>}/>
+        <Route path="/avaliablecontainer" element={<AvaliableContainer/>}/>
+        <Route path="/Booking" element={<Booking/>}/>
+        <Route path="/Logout" element={<Logout/>}/>
+        <Route path="/conatainer" element={<Container/>}/>
+        <Route path ="/Booked" element={<BookedContainers/>}/>
+        <Route path="/Nav" element={<Navbar/>}/>
+        <Route path='/' element={<HomeTester/>}/>
+        <Route path='/Profile' element={<Profile/>}/>
+        <Route path='/Payment' element={<Payment/>}/>
         </Routes>
     </BrowserRouter>
 )
