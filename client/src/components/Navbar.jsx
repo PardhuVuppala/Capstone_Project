@@ -362,7 +362,7 @@ useEffect(()=>
                          <ListItemIcon>
                              <ReceiptLongIcon />
                          </ListItemIcon>
-                         <ListItemText primary="ransaction History"/>
+                         <ListItemText primary="Transaction History"/>
                      </ListItemButton>
                  </ListItem>
         </List>

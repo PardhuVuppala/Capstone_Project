@@ -153,9 +153,10 @@ const handleSearch = (e) => {
                   <label htmlFor="typeFilter">Type:</label>
                   <select className="form-control" id="typeFilter" value={type} onChange={(e) => setType(e.target.value)} required>
                    <option value="" disabled>Select Container Type</option>
-                    <option value="type A">Type-A</option>
-                    <option value="type B">Type-B</option>
-                    <option value="type C">Type-C</option>
+                    <option value="Dry Storage Container">Dry Storage Container</option>
+                    <option value="Refrigerated Container">Refrigerated Container</option>
+                    <option value="Cargo Storage Roll Container">Cargo Storage Roll Container</option>
+                    <option value="Open Top Container">Open Top Container</option>
                   </select>
                 </div>
                 <div className="form-group">

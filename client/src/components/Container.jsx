@@ -162,12 +162,13 @@ export default function Container() {
       />
        <select className="form-control mb-2" id="typeFilter" value={con_type} onChange={(e) => setContainerType(e.target.value)} required>
                     <option value="" disabled>Select Container Type</option>
-                    <option value="type A">Type-A</option>
-                    <option value="type B">Type-B</option>
-                    <option value="type C">Type-C</option>
+                    <option value="Dry Storage Container">Dry Storage Container</option>
+                    <option value="Refrigerated Container">Refrigerated Container</option>
+                    <option value="Cargo Storage Roll Container">Cargo Storage Roll Container</option>
+                    <option value="Open Top Container">Open Top Container</option>
                   </select>
       <select className="form-control mb-2" id="dimensionFilter" value={con_dimension} onChange={(e) => setContainerDimension(e.target.value)} required>
-                    <option value="" disabled>Select Container</option>
+                    <option value="" disabled>Select Container Dimension</option>
                     <option value="18.3X2.44X2.59 : 60ft ">18.3X2.44X2.59 in M</option>
                     <option value="12.2X2.44X2.59 : 40ft">12.2X2.44X2.59 in M</option>
                     <option value="6.1X2.44X2.59 : 20ft">5.9X2.44X2.59 in M</option>

@@ -297,18 +297,19 @@ const handleSearch = (e) => {
                   <label htmlFor="typeFilter">Type:</label>
                   <select className="form-control" id="typeFilter" value={type} onChange={(e) => setType(e.target.value)} required>
                    <option value="" disabled>Select Container Type</option>
-                    <option value="type A">Type-A</option>
-                    <option value="type B">Type-B</option>
-                    <option value="type C">Type-C</option>
+                   <option value="Dry Storage Container">Dry Storage Container</option>
+                    <option value="Refrigerated Container">Refrigerated Container</option>
+                    <option value="Cargo Storage Roll Container">Cargo Storage Roll Container</option>
+                    <option value="Open Top Container">Open Top Container</option>
                   </select>
                 </div>
                 <div className="form-group">
                   <label htmlFor="startDate">Start Date:</label>
-                  <input type="datetime-local" className="form-control" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} required/>
+                  <input type="datetime-local" className="form-control" id="startDate" value={startDate} onChange={(e) => setStartDate(e.target.value)} min={currentDate} required/>
                 </div>
                 <div className="form-group">
                   <label htmlFor="endDate">End Date:</label>
-                  <input type="datetime-local" className="form-control" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} required/>
+                  <input type="datetime-local" className="form-control" id="endDate" value={endDate} onChange={(e) => setEndDate(e.target.value)} min={currentDate} required/>
                 </div>
               </div>
               <div className="modal-footer">
@@ -336,7 +337,7 @@ const handleSearch = (e) => {
  <Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
  <Fab variant="extended" data-toggle="modal" onClick={Refresher}>
    <FilterAltOffIcon sx={{ mr: 1 }} />
-   Filter Container
+   UnFilter Container
  </Fab>
 </Box>
 )}
