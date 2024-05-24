@@ -138,17 +138,17 @@ useEffect(() => {
        
     <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
         <div
-            className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center bg-white">
+            className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center">
             <div className="">
                 <h1
                     className="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
                     Profile
                 </h1>
-                <h2 className="text-grey text-sm mb-4 dark:text-gray-600 text-center">Edit Profile</h2>
+                <h2 className="text-white text-sm mb-4  text-center">Edit Profile</h2>
                 <form onSubmit={handleSubmit}>
                    
                         <div
-                            className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxwcm9maWxlfGVufDB8MHx8fDE3MTEwMDM0MjN8MA&ixlib=rb-4.0.3&q=80&w=1080')] bg-cover bg-center bg-no-repeat">
+                            className="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('https://www.pngkey.com/png/detail/121-1219231_no-image-png.png')] bg-cover bg-center bg-no-repeat mb-3">
 
                             
                         </div>     
@@ -216,13 +216,13 @@ useEffect(() => {
        
     <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
         <div
-            className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center bg-white">
+            className="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center">
             <div className="">
                 <h1
                     className="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
                     Profile
                 </h1>
-                <h2 className="text-grey text-sm mb-4 dark:text-gray-400 text-center">Edit Profile</h2>
+                <h2 className="text-white text-sm mb-4  text-center">Edit Profile</h2>
                 <form onSubmit={handleSubmitOwner}>
                    
                         <div

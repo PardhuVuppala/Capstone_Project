@@ -261,48 +261,47 @@ useEffect(()=>
             
                  
            
- 
+                    < ListItem disablePadding>
+                <ListItemButton component={Link} to="/"> {/* Wrap ListItemButton with Link */}
+                    <ListItemIcon>
+                    <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Home"/> {/* Remove redundant Link */}
+                </ListItemButton>
+                </ListItem>
                  <ListItem disablePadding>
-                     <ListItemButton >
-                         <ListItemIcon>
-                             <HomeIcon />
-                         </ListItemIcon>
-                         <ListItemText primary={<Link to="/">Home</Link>} />
-                     </ListItemButton>
-                 </ListItem>
-                 <ListItem disablePadding>
-                     <ListItemButton>
+                     <ListItemButton component={Link} to="/Profile">
                          <ListItemIcon>
                              <PersonIcon/>
                          </ListItemIcon>
-                         <ListItemText primary={<Link to="/Profile">Profile</Link>} />
+                         <ListItemText primary="Profile" />
                      </ListItemButton>
                  </ListItem>
                  <ListItem disablePadding>
-                     <ListItemButton>
+                     <ListItemButton  component={Link} to="/avaliablecontainer">
                          <ListItemIcon>
                              <CheckCircleIcon />
                          </ListItemIcon>
-                         <ListItemText primary={<Link to="/avaliablecontainer">Available Container</Link>} />
+                         <ListItemText primary="Available Container" />
                      </ListItemButton>
                  </ListItem>
                  <ListItem disablePadding>
-                     <ListItemButton>
+                     <ListItemButton component={Link} to="/Transaction">
                          <ListItemIcon>
                              <ReceiptLongIcon />
                          </ListItemIcon>
-                         <ListItemText primary={<Link to="/Transaction">Transaction History</Link>} />
+                         <ListItemText primary="Transaction History" />
                      </ListItemButton>
                  </ListItem>
              </List>
              <Divider />
              <List>
                  <ListItem disablePadding>
-                     <ListItemButton>
+                     <ListItemButton component={Link} to="/Booking">
                          <ListItemIcon>
                              <EventIcon />
                          </ListItemIcon>
-                         <ListItemText primary={<Link to="/Booking">Bookings</Link>} />
+                         <ListItemText primary="Bookings"/>
                      </ListItemButton>
                  </ListItem>
                  
@@ -315,14 +314,14 @@ useEffect(()=>
                      </ListItemButton>
                  </ListItem> */}
 
-                 <ListItem disablePadding>
-                <ListItemButton>
-                    <ListItemIcon>
+                <ListItem disablePadding>
+                    <ListItemButton onClick={HandleLogout}> 
+                        <ListItemIcon>
                         <ExitToAppIcon />
-                    </ListItemIcon>
-                    <ListItemText primary={<Link onClick={HandleLogout}>Logout</Link>} />
-                </ListItemButton>
-            </ListItem>
+                        </ListItemIcon>
+                        <ListItemText primary="Logout" />
+                    </ListItemButton>
+                    </ListItem>
              </List>
              </div>
         )} 
@@ -335,55 +334,55 @@ useEffect(()=>
       
 
             <ListItem disablePadding>
-                <ListItemButton >
+                <ListItemButton component={Link} to="/">
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/">Home</Link>} />
+                    <ListItemText primary="Home"/>
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to="/Profile">
                     <ListItemIcon>
                         <PersonIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/Profile">Profile</Link>} />
+                    <ListItemText primary="Profile"/>
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to="/conatainer">
                     <ListItemIcon>
                         <CheckCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/conatainer">Containers</Link>} />
+                    <ListItemText primary="Containers"/>
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-                     <ListItemButton>
+                     <ListItemButton component={Link} to="/Transaction">
                          <ListItemIcon>
                              <ReceiptLongIcon />
                          </ListItemIcon>
-                         <ListItemText primary={<Link to="/Transaction">Transaction History</Link>} />
+                         <ListItemText primary="ransaction History"/>
                      </ListItemButton>
                  </ListItem>
         </List>
         <Divider />
         <List>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to="/Booked">
                     <ListItemIcon>
                         <EventIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/Booked">Booked Containers</Link>} />
+                    <ListItemText primary="Booked Containers" />
                 </ListItemButton>
             </ListItem>
       
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={HandleLogout}> 
                     <ListItemIcon>
                         <ExitToAppIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link onClick={HandleLogout}>Logout</Link>} />
+                    <ListItemText primary="Logout" />
                 </ListItemButton>
             </ListItem>
         </List>
@@ -408,56 +407,56 @@ useEffect(()=>
        
             
        <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton  component={Link} to="/AvailableContainerHome">
                     <ListItemIcon>
                         <CheckCircleIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/AvailableContainerHome">Avaliable Containers</Link>} />
+                    <ListItemText primary="Avaliable Containers"/>
                 </ListItemButton>
             </ListItem>
 
             <ListItem disablePadding>
-                <ListItemButton >
+                <ListItemButton component={Link} to="/Login">
                     <ListItemIcon>
                         <LoginIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/Login">Login</Link>} />
+                    <ListItemText primary="Login"/>
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={toggleModal}> 
                     <ListItemIcon>
                         <PersonIcon/>
                     </ListItemIcon>
-                    <ListItemText primary={<Link onClick={toggleModal}>User OTP Login</Link>} />
+                    <ListItemText primary="User OTP Login" />
                 </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton onClick={OwnerModal}>
                     <ListItemIcon>
                         <PersonIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link onClick={OwnerModal}>Agent OTP Login</Link>} />
+                    <ListItemText primary="Agent OTP Login"/>
                 </ListItemButton>
             </ListItem>
         </List>
         <Divider />
         <List>
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to="/signup">
                     <ListItemIcon>
                         <HowToRegIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/signup">User Registration</Link>} />
+                    <ListItemText primary="Sign Up"/>
                 </ListItemButton>
             </ListItem>
       
             <ListItem disablePadding>
-                <ListItemButton>
+                <ListItemButton component={Link} to="/AgentSignup">
                     <ListItemIcon>
                         <HowToRegIcon />
                     </ListItemIcon>
-                    <ListItemText primary={<Link to="/AgentSignup">Agent Registration</Link>} />
+                    <ListItemText primary="Agent Registration" />
                 </ListItemButton>
             </ListItem>
         </List>
