@@ -24,6 +24,7 @@ export default function AvailableContainer() {
   const [endDate, setEndDate] = useState("");
   const [Role,setRole] = useState("");
   const [filteredContainers, setFilteredContainers] = useState([]);
+  const [BoolFliter,SetBoolFliter] = useState(false);
   const [FilteredId, setFilteredId] = useState([]);
   const notify = (message) => toast(message);
   const [showAuthenticationModal, setShowAuthenticationModal] = useState(false);
@@ -79,6 +80,7 @@ const handleSearch = (e) => {
         const availabilityData = response.data.containersWithAvailability;
         const filteredContainers = containers.filter(container => availabilityData[container._id]);
         setFilteredContainers(filteredContainers);
+        SetBoolFliter(true)
         setState(false);
       })
       .catch(error => {
@@ -86,6 +88,11 @@ const handleSearch = (e) => {
       });
   };
   const currentDate = new Date().toISOString().slice(0, 16);
+
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const EndDate = tomorrow.toISOString().slice(0, 16);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(container);
@@ -104,6 +111,7 @@ const handleSearch = (e) => {
       .then(response => {
         // console.log(response.data);
         if (response.status === 200) {
+          
           notify(response.data.message);
           setShowAuthenticationModal(!showAuthenticationModal);
           // console.log(response.data.message);
@@ -171,7 +179,14 @@ const handleSearch = (e) => {
       </div>
       <Navbar/>
       
-      <h1 className='text-center'>Container List</h1>
+    { !BoolFliter && (<h1 className="text-center text-white">
+  Container List Shown Here. You can book for only one day. If you want to book for multiple days, you have to apply the filter.
+</h1>)}
+    {BoolFliter && (
+       <h1 className="text-center text-white">Here, You can book conatiner for any number of days as you applied</h1>
+    )}
+  
+      
 
 {!State && (
  <Box sx={{ position: 'fixed', bottom: '20px', right: '20px', zIndex: '1000' }}>
@@ -227,15 +242,39 @@ const handleSearch = (e) => {
             <p>Container ID</p>
             <p className="font-bold">{container.con_uniqueid}</p>
           </div>
-        {Role && (
-          <button
-          className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          type="button"
-          onClick={()=>{toggleAuthenticationModal();setContainer(container) ;}}>
-          Book
-        </button>
-        )}
+          {!BoolFliter && Role && (
+  <>
+    {container.availability ? (
+      <button
+        className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        type="button"
+        onClick={() => { toggleAuthenticationModal(); setContainer(container); }}
+      >
+        Book
+      </button>
+    ) : (
+      <button
+        className="block text-white bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+        type="button"
+        disabled
+      >
+        Booked
+      </button>
+    )}
+  </>
+)}
 
+{BoolFliter && Role && (
+  <button
+    className="block text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+    type="button"
+    onClick={() => { toggleAuthenticationModal(); setContainer(container); }}
+  >
+    Book
+  </button>
+)}
+
+            
 
         {!Role && (
           <button
@@ -296,23 +335,50 @@ const handleSearch = (e) => {
               </div>
               <div className="p-4 md:p-5">
                 <form className="space-y-4" >
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block mb-2 text-sm font-medium text-gray-900">
-                       Booking Slot    
-                    </label>
-                    <input type="datetime-local" className="form-control" name="start_time" value={start_time} onChange={(e) => setStarttime(e.target.value)} min={currentDate} required/>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="password"
-                      className="block mb-2 text-sm font-medium text-gray-900"
-                    >
-                      End Slot
-                    </label>
-                    <input type="datetime-local" className="form-control" name="end_time" value={end_time} onChange={(e) => setEndTime(e.target.value)} min={currentDate} required />
-                  </div>
+                  {!BoolFliter && (
+                    <div>
+                      <div>
+                      <label
+                        htmlFor="date"
+                        className="block mb-2 text-sm font-medium text-gray-900">
+                         Booking Slot    
+                      </label>
+                      <input type="datetime-local" className="form-control" name="start_time" value={start_time} onChange={(e) => setStarttime(e.target.value)} min={currentDate} max={EndDate} required/>
+                    </div>
+                    <div>
+                      <label
+                        htmlFor="date"
+                        className="block mb-2 text-sm font-medium text-gray-900"
+                      >
+                        End Slot
+                      </label>
+                      <input type="datetime-local" className="form-control" name="end_time" value={end_time} onChange={(e) => setEndTime(e.target.value)} min={currentDate} max ={EndDate} required />
+                    </div>
+                    </div>
+                  )}
+                  {BoolFliter &&(
+                     <div>
+                     <div>
+                     <label
+                       htmlFor="date"
+                       className="block mb-2 text-sm font-medium text-gray-900">
+                        Booking Slot    
+                     </label>
+                     <input type="datetime-local" className="form-control" name="start_time" value={start_time} onChange={(e) => setStarttime(e.target.value)} min={currentDate}  required/>
+                   </div>
+                   <div>
+                     <label
+                       htmlFor="date"
+                       className="block mb-2 text-sm font-medium text-gray-900"
+                     >
+                       End Slot
+                     </label>
+                     <input type="datetime-local" className="form-control" name="end_time" value={end_time} onChange={(e) => setEndTime(e.target.value)} min={currentDate} required />
+                   </div>
+                   </div>
+
+                  )}
+                
                   <button
                     type="submit"
                     className="w-full text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={handleSubmit}

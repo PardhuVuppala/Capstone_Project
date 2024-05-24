@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const randomize = require('randomatic');
 const ContModal = require('../modals/container_schema');
+const Booking = require('../modals/Booking_Scheme');
+const Container = require('../modals/container_schema'); 
+
+
 // creating containers
 router.post('/register', async (req, res) => {
     try{
@@ -41,12 +45,41 @@ router.post('/register', async (req, res) => {
 
 router.get('/containers', async (req, res) => {
     try {
-        const containers = await ContModal.find();
-        res.status(200).json(containers);
+        const today = new Date();
+        const tomorrow = new Date();
+        tomorrow.setDate(today.getDate() + 1);
+
+        // Fetch all containers
+        const containers = await Container.find();
+
+        // Get container IDs
+        const containerIds = containers.map(container => container._id.toString());
+
+        // Fetch bookings that fall within the date range
+        const bookings = await Booking.find({
+            cont_id: { $in: containerIds },
+            $or: [
+                { start_time: { $lt: tomorrow, $gte: today } },
+                { end_time: { $gt: today, $lte: tomorrow } },
+                { start_time: { $lte: today }, end_time: { $gte: tomorrow } }
+            ]
+        });
+
+        // Create a map to mark booked containers
+        const bookedContainers = new Set(bookings.map(booking => booking.cont_id));
+
+        // Add availability status to containers
+        const containerDetails = containers.map(container => ({
+            ...container._doc, // Spread the original container document
+            availability: !bookedContainers.has(container._id.toString())
+        }));
+
+        res.status(200).json(containerDetails);
     } catch (err) {
         res.status(500).json({ message: err.message || 'Error in fetching containers from MongoDB' });
     }
 });
+
 
 router.get('/owner/container', async (req, res) => {
     try {

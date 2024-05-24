@@ -12,6 +12,7 @@ import HomeTester from './components/HomeTester';
 import Booking from './components/Booking';
 import Profile from './components/ProfilePage';
 import Payment from './components/Payment';
+import Product from './components/Product';
 function App() {
 return(
     <BrowserRouter>
@@ -28,6 +29,7 @@ return(
         <Route path='/' element={<HomeTester/>}/>
         <Route path='/Profile' element={<Profile/>}/>
         <Route path='/Payment' element={<Payment/>}/>
+        <Route path='/Product' element={<Product/>}/>
         </Routes>
     </BrowserRouter>
 )
