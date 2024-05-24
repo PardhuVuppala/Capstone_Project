@@ -4,6 +4,7 @@ function Product() {
   const amount = 500;
   const currency = "INR";
   const receiptId = "qwsaq1";
+  
 
   const paymentHandler = async (e) => {
     const response = await fetch("http://localhost:4500/payment/order", {

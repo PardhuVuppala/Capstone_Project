@@ -28,7 +28,8 @@ export default function Login() {
     .then(response =>
       { 
        
-        const { token, user_id, role,username } = response.data;
+        const { token, user_id, role,username,  phone,
+          email } = response.data;
         // console.log(token);
         // console.log(user_id);
         // console.log(role);
@@ -36,6 +37,9 @@ export default function Login() {
         Cookies.set('token',token);
         Cookies.set('role',role);
         Cookies.set('username',username)
+        Cookies.set('phone',phone);
+        Cookies.set('user_email',email)
+
          notify("Successfully Login");
          setTimeout(()=>
          {

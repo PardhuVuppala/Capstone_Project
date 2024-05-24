@@ -11,8 +11,9 @@ import Navbar from './components/Navbar';
 import HomeTester from './components/HomeTester';
 import Booking from './components/Booking';
 import Profile from './components/ProfilePage';
-import Payment from './components/Payment';
+import Transaction from './components/TransactionHistrory';
 import Product from './components/Product';
+import AvailableContainerHome from './components/AvaliablecontainerHome';
 function App() {
 return(
     <BrowserRouter>
@@ -28,8 +29,9 @@ return(
         <Route path="/Nav" element={<Navbar/>}/>
         <Route path='/' element={<HomeTester/>}/>
         <Route path='/Profile' element={<Profile/>}/>
-        <Route path='/Payment' element={<Payment/>}/>
+        <Route path='/Transaction' element={<Transaction/>}/>
         <Route path='/Product' element={<Product/>}/>
+        <Route path='/AvailableContainerHome' element={<AvailableContainerHome/>}/>
         </Routes>
     </BrowserRouter>
 )

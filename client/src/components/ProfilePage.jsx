@@ -5,6 +5,7 @@ import { useEffect,useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { useNavigate } from 'react-router-dom';
 export default function ProfilePage() {
 const [name,setname] = useState("");
 const [email,setEmail] = useState("");
@@ -16,6 +17,7 @@ const [role,setRole]  =useState("");
 const [company,setCompany] = useState("");
 const [userDOB, setUserDOB] = useState(new Date());
 const notify = (message) => toast(message);
+const navigate = useNavigate();
 
 const handleSubmitOwner=(e)=>{ 
     e.preventDefault();
@@ -50,6 +52,29 @@ const handleSubmit=(e)=>{
     })
 }
 const [u_id,setId] = useState("");
+
+useEffect(() => {
+    const token = Cookies.get("token");
+
+    if (token) {
+      axios
+        .get("http://localhost:4500/user/is-verify", {
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        })
+        .then((response) => {
+        })
+        .catch((error) => {
+          console.error(error);
+          navigate("/");
+        });
+    } else {
+      // Handle missing token
+      navigate("/");
+    }
+  }, [navigate]);
 useEffect(() => {
     const user_id = Cookies.get("user_id");
     const token = Cookies.get("token");

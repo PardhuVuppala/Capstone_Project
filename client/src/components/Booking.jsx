@@ -2,9 +2,11 @@ import React,{useEffect,useState} from 'react'
 import Navbar from "./Navbar";
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 
 export default function Booking() {
     const [containers, setContainers] = useState([]);
+    const navigate = useNavigate();
   useEffect(()=>
   {   
     const user_id = Cookies.get('user_id');
@@ -21,6 +23,32 @@ export default function Booking() {
            console.error('Error fetching containers:', error);
         });
   },[])
+  useEffect(() => {
+    const token = Cookies.get("token");
+
+    if (token) {
+      axios
+        .get("http://localhost:4500/user/is-verify", {
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        })
+        .then((response) => {
+        })
+        .catch((error) => {
+          console.error(error);
+          navigate("/");
+        });
+    } else {
+      // Handle missing token
+      navigate("/");
+    }
+  }, [navigate]);
+
+
+ 
+
   return (
     <div>
         <Navbar/>

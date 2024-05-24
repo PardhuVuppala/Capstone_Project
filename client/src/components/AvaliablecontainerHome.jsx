@@ -12,7 +12,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 
 
-export default function AvailableContainer() {
+export default function AvailableContainerHome() {
   const [start_time, setStarttime] = useState('');
   const [State,setState]=useState(true);
   const [end_time, setEndTime] = useState('');
@@ -29,29 +29,6 @@ export default function AvailableContainer() {
   const notify = (message) => toast(message);
   const [showAuthenticationModal, setShowAuthenticationModal] = useState(false);
   const Navigate = useNavigate();
-  useEffect(() => {
-    const token = Cookies.get("token");
-
-    if (token) {
-      axios
-        .get("http://localhost:4500/user/is-verify", {
-          headers: {
-            "Content-Type": "application/json",
-            token: token,
-          },
-        })
-        .then((response) => {
-        })
-        .catch((error) => {
-          console.error(error);
-          Navigate("/");
-        });
-    } else {
-      // Handle missing token
-      Navigate("/");
-    }
-  }, [Navigate]);
-
   const onLogin =() =>{
             notify("Please Login for proceed with the booking");
             setTimeout(()=>
@@ -117,8 +94,8 @@ const handleSearch = (e) => {
   const EndDate = tomorrow.toISOString().slice(0, 16);
 
   const handleSubmit = (e) => {
-    console.log(container);
     e.preventDefault();
+    // console.log(container);
     const userId = Cookies.get('user_id');
     const user_id = userId;
     const agent_id = container.ownerid;
@@ -149,127 +126,6 @@ const handleSearch = (e) => {
         }
       });
   }
-  
-  const paymentHandler = async (e) => {
-    e.preventDefault();
-    const startDate = new Date(start_time);
-    const endDate = new Date(end_time);
-    
-    const timeDifferenceInMilliseconds = endDate.getTime() - startDate.getTime();
-    const timeDifferenceInDays = timeDifferenceInMilliseconds / (1000 * 3600 * 24);
-    // 12.2X2.44X2.59 : 40ft
-    // 6.1X2.44X2.59 : 20f
-    // ownerid
-
-    if(container.con_dimension==="12.2X2.44X2.59 : 40ft")
-     { 
-     var amount = 50000*timeDifferenceInDays;
-     }
-     else if(container.con_dimension ==="6.1X2.44X2.59 : 20ft"){
-      var amount = 30000*timeDifferenceInDays;
-     }
-     else
-     {
-      var amount = 100000*timeDifferenceInDays;
-     }
-
-    var currency = "INR";
-    var ContainerUniqueID = container.con_uniqueid;
-    const username = Cookies.get("username");
-    const phone = Cookies.get("phone");
-    const email = Cookies.get("user_email")
-    const response = await fetch("http://localhost:4500/payment/order", {
-      method: "POST",
-      body: JSON.stringify({
-        amount,
-        currency,
-        receipt: ContainerUniqueID,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const order = await response.json();
-    console.log(order);
-
-    var options = {
-      key: "rzp_test_VbOIVCIw6g4EGe", // Enter the Key ID generated from the Dashboard
-      amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-      currency,
-      name: "Container Booking Management", //your business name
-      description: "Test Transaction",
-      image: "https://example.com/your_logo",
-      order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      handler: async function (response) {
-        const body = {
-          ...response,
-        };
-
-        const validateRes = await fetch(
-          "http://localhost:4500/payment/order/validate",
-          {
-            method: "POST",
-            body: JSON.stringify(body),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-        const jsonRes = await validateRes.json();
-        console.log(jsonRes.msg);
-        if(jsonRes.msg)
-          {   
-            const userId = Cookies.get('user_id');
-
-            try {
-              const body = {
-                  user_id: userId,
-                  agent_id: container.ownerid,
-                  cont_id: container._id,
-                  payment_id: jsonRes.paymentId,
-                  order_id: jsonRes.orderId,
-                  amount : amount
-              };
-  
-              const response = await axios.post('http://localhost:4500/payment/sent', body);
-              // console.log('Transaction saved:', response.data);
-              if(response.data.success)
-                {
-                  handleSubmit(e);
-                }
-          } catch (error) {
-              console.error('Error saving transaction:', error);
-          }
-          }
-
-      },
-      prefill: {
-        //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
-        name: username, //your customer's name
-        email: email,
-        contact: phone, //Provide the customer's phone number for better conversion rates
-      },
-      notes: {
-        address: "Razorpay Corporate Office",
-      },
-      theme: {
-        color: "#3399cc",
-      },
-    };
-    
-    var rzp1 = new window.Razorpay(options);
-    rzp1.on("payment.failed", function (response) {
-      alert(response.error.code);
-      alert(response.error.description);
-      alert(response.error.source);
-      alert(response.error.step);
-      alert(response.error.reason);
-      alert(response.error.metadata.order_id);
-      alert(response.error.metadata.payment_id);
-    });
-    rzp1.open();
-  };
-
 
   return (
     <div>
@@ -525,7 +381,7 @@ const handleSearch = (e) => {
                 
                   <button
                     type="submit"
-                    className="w-full text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={paymentHandler}
+                    className="w-full text-white bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center " onClick={handleSubmit}
                   >
                     Book
                   </button>

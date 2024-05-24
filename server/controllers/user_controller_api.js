@@ -49,12 +49,16 @@ router.post('/login',async(req,res) =>
         const token = jwtgenerator(user.id)
         const user_id = user.id;
         const username = user.username;
+        const phone = user.usermobile;
+        const email = user.useremail;
         const role = "user"
         const body={
             token,
             user_id,
             role,
-            username
+            username,
+            phone,
+            email
         }
         res.json(body);
     }
@@ -127,12 +131,17 @@ router.post('/otp',async(req,res) =>
         const token = jwtgenerator(user.id)
         const user_id = user.id;
         const username = user.username;
+        const phone = user.usermobile;
+        const email = user.useremail;
+
         const role = "user"
              const body = {
                 token,
                 user_id,
                 username,
                 role,
+                phone,
+                email,
                 otp
              }
              res.json(body)
@@ -148,4 +157,15 @@ router.post('/otp',async(req,res) =>
     console.log(err.message);
    }
 })
+
+
+
+router.get("/is-verify", Authorize, async (req, res) => {
+    try {
+      res.json(true);
+    } catch (err) {
+      res.status(500).send("Server Error");
+    }
+});
+
 module.exports = router;

@@ -3,9 +3,32 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from "./Navbar";
 import Cookies from 'js-cookie';
-
+import { useNavigate } from 'react-router-dom';
 export default function BookedContainers() {
     const [bookedUsers, setBookedUsers] = useState([]);
+    const navigate = useNavigate();
+    useEffect(() => {
+      const token = Cookies.get("token");
+  
+      if (token) {
+        axios
+          .get("http://localhost:4500/user/is-verify", {
+            headers: {
+              "Content-Type": "application/json",
+              token: token,
+            },
+          })
+          .then((response) => {
+          })
+          .catch((error) => {
+            console.error(error);
+            navigate("/");
+          });
+      } else {
+        // Handle missing token
+        navigate("/");
+      }
+    }, [navigate]);
 
     useEffect(() => {
         const fetchBookedUsers = async () => {

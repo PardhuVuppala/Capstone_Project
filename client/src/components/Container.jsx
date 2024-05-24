@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { useNavigate } from 'react-router-dom';
 
 export default function Container() {
 
@@ -15,7 +16,32 @@ export default function Container() {
   const [con_type, setContainerType] = useState('');
   const [con_dimension, setContainerDimension] = useState('');
   const [containers, setContainers] = useState([]);
+  const navigate = useNavigate();
   const notify = (message) => toast(message);
+  useEffect(() => {
+    const token = Cookies.get("token");
+
+    if (token) {
+      axios
+        .get("http://localhost:4500/user/is-verify", {
+          headers: {
+            "Content-Type": "application/json",
+            token: token,
+          },
+        })
+        .then((response) => {
+        })
+        .catch((error) => {
+          console.error(error);
+          navigate("/");
+        });
+    } else {
+      // Handle missing token
+      navigate("/");
+    }
+  }, [navigate]);
+  
+  
   useEffect(()=>
   {
     const ownername = Cookies.get('ownername')

@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Razorpay = require("razorpay");
 const crypto = require("crypto");
+const TransactionDetails = require("../modals/Transaction_details");
+const { toASCII } = require('punycode');
 
 require("dotenv").config();
 router.post("/order", async (req, res) => {
@@ -44,6 +46,60 @@ router.post("/order/validate", async (req, res) => {
       paymentId: razorpay_payment_id,
     });
   });
+
+
+  router.post('/sent', async (req, res) => {
+    const { user_id, agent_id, cont_id, payment_id, order_id,amount } = req.body;
+    try {
+        const Transaction = new TransactionDetails({
+            user_id: req.body.user_id,
+            agent_id: req.body.agent_id,
+            cont_id: req.body.cont_id,
+            payment_id: req.body.payment_id,
+            order_id: req.body.order_id,
+            amount : req.body.amount
+        });
+
+        await Transaction.save();
+        res.status(200).json({ success: true });
+    } catch (err) {
+        console.error("Error booking cont:", err);
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+});
+
+router.post('/transactions', async (req, res) => {
+  const { user_id } = req.body;
+  try {
+      const transactions = await TransactionDetails.find({ user_id: req.body.user_id });
+
+      res.status(200).json(transactions);
+  } catch (err) {
+      console.error("Error fetching transactions:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+
   
+});
+
+router.post('/transactionsagent', async (req, res) => {
+  const { agent_id} = req.body;
+  try {
+      const transactions = await TransactionDetails.find({ agent_id: req.body.agent_id });
+
+      res.status(200).json(transactions);
+  } catch (err) {
+      console.error("Error fetching transactions:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+  }
+
+  
+});
+
+
+
+
+  
+
 
   module.exports = router;

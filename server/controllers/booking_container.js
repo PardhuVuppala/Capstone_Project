@@ -56,7 +56,7 @@ router.post('/register',async(req,res)=>{
     }
     catch(err)
     {   
-        console.error("Error booking cont:", error);
+        console.error("Error booking cont:", err);
         return res.status(500).json({ message: "Internal server error." });
     } 
 });
