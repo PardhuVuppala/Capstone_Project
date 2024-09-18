@@ -193,7 +193,7 @@ const handleSearch = (e) => {
     console.log(order);
 
     var options = {
-      key: "rzp_test_VbOIVCIw6g4EGe", // Enter the Key ID generated from the Dashboard
+      key: "Create a Test Acccount in Razour Pay ID will be generated in the website paste here", // Enter the Key ID generated from the Dashboard
       amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency,
       name: "Container Booking Management", //your business name
